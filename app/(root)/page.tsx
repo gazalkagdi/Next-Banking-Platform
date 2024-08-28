@@ -1,13 +1,13 @@
 import HeaderBox from "@/components/HeaderBox";
+
 import RightSidebar from "@/components/RightSidebar";
 import TotalBalanceBox from "@/components/TotalBalanceBox";
 
-const Home = async () => {
-  const loggedIn = {
-    firstName: "gazal",
-    lastName: "kagdi",
-    email: "gk@gmail.com",
-  };
+import { getLoggedInUser } from "@/lib/actions/user.actions";
+
+const Home = async ({ searchParams: { id, page } }: SearchParamProps) => {
+  const currentPage = Number(page as string) || 1;
+  const loggedIn = await getLoggedInUser();
 
   return (
     <section className="home">
@@ -16,7 +16,7 @@ const Home = async () => {
           <HeaderBox
             type="greeting"
             title="Welcome"
-            user={"Guest"}
+            user={loggedIn?.name || "Guest"}
             subtext="Access and manage your account and transactions efficiently."
           />
 
@@ -26,7 +26,7 @@ const Home = async () => {
             totalCurrentBalance={1800.11}
           />
         </header>
-        Recent Transactions
+        recent transactions
       </div>
 
       <RightSidebar user={loggedIn} transactions={[]} banks={[{}, {}]} />
