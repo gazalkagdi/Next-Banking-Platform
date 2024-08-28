@@ -8,7 +8,11 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const loggedIn = { firstName: "gazal", lastName: "kagdi" };
+  const loggedIn = {
+    firstName: "gazal",
+    lastName: "kagdi",
+    email: "gk@gmail.com",
+  };
 
   return (
     <main className="flex h-screen w-full font-inter">
